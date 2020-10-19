@@ -5,14 +5,10 @@ public class WordFrequencyGame {
     private static final String WHITE_SPACE = "\\s+";
 
     public String getResult(String sentence) {
-        try {
             List<WordInfo> wordInfoList = getWordFrequency(sentence);
             sortWordInfoList(wordInfoList);
             String joiner = formatWordInfo(wordInfoList);
             return joiner;
-        } catch (Exception e) {
-            return "Calculate Error";
-        }
     }
 
     private List<WordInfo> getWordFrequency(String sentence) {
