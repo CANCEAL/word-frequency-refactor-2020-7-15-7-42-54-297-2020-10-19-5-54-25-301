@@ -3,29 +3,20 @@ import java.util.*;
 public class WordFrequencyGame {
     private static final String WHITE_SPACE = "\\s+";
 
-    public String getResult(String sentence){
+    public String getResult(String sentence) {
 
         if (sentence.split(WHITE_SPACE).length==1) {
             return sentence + " 1";
         } else {
             try {
                 List<WordInfo> wordInfoList = getWordFrequency(sentence);
-                wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+                sortWordInfoList(wordInfoList);
                 StringJoiner joiner = getStringJoiner(wordInfoList);
                 return joiner.toString();
             } catch (Exception e) {
                 return "Calculate Error";
             }
         }
-    }
-
-    private StringJoiner getStringJoiner(List<WordInfo> wordInfoList) {
-        StringJoiner joiner = new StringJoiner("\n");
-        for (WordInfo wordInfo : wordInfoList) {
-            String combineWordInfo = String.format("%s %d", wordInfo.getValue(), wordInfo.getWordCount());
-            joiner.add(combineWordInfo);
-        }
-        return joiner;
     }
 
     private List<WordInfo> getWordFrequency(String sentence) {
@@ -37,5 +28,18 @@ public class WordFrequencyGame {
             wordInfoList.add(new WordInfo(word, count));
         }
         return wordInfoList;
+    }
+
+    private void sortWordInfoList(List<WordInfo> wordInfoList) {
+        wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
+    }
+
+    private StringJoiner getStringJoiner(List<WordInfo> wordInfoList) {
+        StringJoiner joiner = new StringJoiner("\n");
+        for (WordInfo wordInfo : wordInfoList) {
+            String combineWordInfo = String.format("%s %d", wordInfo.getValue(), wordInfo.getWordCount());
+            joiner.add(combineWordInfo);
+        }
+        return joiner;
     }
 }
