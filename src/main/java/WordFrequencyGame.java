@@ -1,4 +1,5 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class WordFrequencyGame {
     private static final String WHITE_SPACE = "\\s+";
@@ -7,8 +8,8 @@ public class WordFrequencyGame {
         try {
             List<WordInfo> wordInfoList = getWordFrequency(sentence);
             sortWordInfoList(wordInfoList);
-            StringJoiner joiner = joinString(wordInfoList);
-            return joiner.toString();
+            String joiner = formatWordInfo(wordInfoList);
+            return joiner;
         } catch (Exception e) {
             return "Calculate Error";
         }
@@ -29,12 +30,9 @@ public class WordFrequencyGame {
         wordInfoList.sort((firstWord, secondWord) -> secondWord.getWordCount() - firstWord.getWordCount());
     }
 
-    private StringJoiner joinString(List<WordInfo> wordInfoList) {
-        StringJoiner joiner = new StringJoiner("\n");
-        for (WordInfo wordInfo : wordInfoList) {
-            String combineWordInfo = String.format("%s %d", wordInfo.getWord(), wordInfo.getWordCount());
-            joiner.add(combineWordInfo);
-        }
-        return joiner;
+    private String formatWordInfo(List<WordInfo> wordInfoList) {
+        return wordInfoList.stream()
+                .map(word -> String.format("%s %d", word.getWord(), word.getWordCount()))
+                .collect(Collectors.joining("\n"));
     }
 }
