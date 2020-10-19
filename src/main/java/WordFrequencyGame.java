@@ -20,7 +20,7 @@ public class WordFrequencyGame {
 
                 StringJoiner joiner = new StringJoiner("\n");
                 for (WordInfo wordInfo : wordInfoList) {
-                    String combineWordInfo = wordInfo.getValue() + " " +wordInfo.getWordCount();
+                    String combineWordInfo = String.format("%s %d", wordInfo.getValue(), wordInfo.getWordCount());
                     joiner.add(combineWordInfo);
                 }
                 return joiner.toString();
