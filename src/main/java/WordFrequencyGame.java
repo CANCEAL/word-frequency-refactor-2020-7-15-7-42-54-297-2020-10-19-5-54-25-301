@@ -4,18 +4,13 @@ public class WordFrequencyGame {
     private static final String WHITE_SPACE = "\\s+";
 
     public String getResult(String sentence) {
-
-        if (sentence.split(WHITE_SPACE).length==1) {
-            return sentence + " 1";
-        } else {
-            try {
-                List<WordInfo> wordInfoList = getWordFrequency(sentence);
-                sortWordInfoList(wordInfoList);
-                StringJoiner joiner = joinString(wordInfoList);
-                return joiner.toString();
-            } catch (Exception e) {
-                return "Calculate Error";
-            }
+        try {
+            List<WordInfo> wordInfoList = getWordFrequency(sentence);
+            sortWordInfoList(wordInfoList);
+            StringJoiner joiner = joinString(wordInfoList);
+            return joiner.toString();
+        } catch (Exception e) {
+            return "Calculate Error";
         }
     }
 
