@@ -8,17 +8,19 @@ import java.io.CharArrayWriter;
 import java.time.LocalDateTime;
 
 public class WordFrequencyGame {
+    private static final String WHITE_SPACE = "\\s+";
+
     public String getResult(String sentence){
 
 
-        if (sentence.split("\\s+").length==1) {
+        if (sentence.split(WHITE_SPACE).length==1) {
             return sentence + " 1";
         } else {
 
             try {
 
                 //split the input string with 1 to n pieces of spaces
-                String[] words = sentence.split("\\s+");
+                String[] words = sentence.split(WHITE_SPACE);
 
                 List<Input> inputList = new ArrayList<>();
                 for (String s : words) {
