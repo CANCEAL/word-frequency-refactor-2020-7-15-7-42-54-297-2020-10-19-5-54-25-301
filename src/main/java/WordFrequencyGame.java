@@ -7,8 +7,7 @@ public class WordFrequencyGame {
     public String getResult(String sentence) {
             List<WordInfo> wordInfoList = getWordFrequency(sentence);
             sortWordInfoList(wordInfoList);
-            String joiner = formatWordInfo(wordInfoList);
-            return joiner;
+            return formatWordInfo(wordInfoList);
     }
 
     private List<WordInfo> getWordFrequency(String sentence) {
